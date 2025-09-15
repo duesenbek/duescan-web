@@ -41,7 +41,7 @@ class HomeScreen extends ConsumerWidget {
                 data: (tokensState) {
                   if (tokensState.trending.isEmpty) {
                     return const EmptyState(
-                      icon: IconlyLight.arrowUp,
+                      icon: IconlyLight.arrow_up,
                       title: 'No trending tokens',
                       message: 'Pull to refresh to load trending tokens',
                     );
@@ -341,7 +341,7 @@ class HomeScreen extends ConsumerWidget {
                   child: CircularProgressIndicator(),
                 ),
                 error: (error, stack) => const EmptyState(
-                  icon: IconlyLight.dangerTriangle,
+                  icon: IconlyLight.danger,
                   title: 'Error Loading Tokens',
                   message: 'Pull to refresh to try again',
                 ),

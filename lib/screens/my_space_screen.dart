@@ -108,7 +108,7 @@ class MySpaceScreen extends ConsumerWidget {
                   },
                   loading: () => const Center(child: CircularProgressIndicator()),
                   error: (error, stack) => const EmptyState(
-                    icon: IconlyLight.dangerTriangle,
+                    icon: IconlyLight.danger,
                     title: 'Error Loading Favorites',
                     message: 'Unable to load your favorite tokens',
                   ),
