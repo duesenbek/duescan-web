@@ -143,7 +143,6 @@ class WalletController extends ChangeNotifier {
     try {
       await _fetchTokensFromAPI();
     } catch (e) {
-      print('API unavailable, using demo data: $e');
       await _loadDemoData();
     }
   }

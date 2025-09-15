@@ -85,21 +85,17 @@ class DexscreenerService {
         'q': searchQuery,
       },
       parser: (data) {
-        print('DexScreener API Response: ${data.toString()}'); // Debug log
         final items = (data['pairs'] as List?) ?? const [];
-        print('Found ${items.length} pairs in response'); // Debug log
         
         // Filter by chainId if specified
         final filteredItems = chainId.isNotEmpty 
             ? items.where((e) {
                 final pair = e as Map<String, dynamic>;
                 final pairChainId = pair['chainId'] as String?;
-                print('Pair chainId: $pairChainId, looking for: $chainId'); // Debug log
                 return pairChainId == chainId;
               }).toList()
             : items;
         
-        print('After filtering by chainId: ${filteredItems.length} pairs'); // Debug log
         
         final list = <Pair>[];
         for (final item in filteredItems) {
@@ -107,8 +103,6 @@ class DexscreenerService {
             final pair = Pair.fromDex(item as Map<String, dynamic>, chainId: chainId);
             list.add(pair);
           } catch (e) {
-            print('Error parsing pair: $e');
-            print('Pair data: ${item.toString()}');
           }
         }
         
@@ -117,7 +111,6 @@ class DexscreenerService {
           list.sort((a, b) => (b.volume24h ?? 0).compareTo(a.volume24h ?? 0));
         }
         
-        print('Final list size: ${list.length}'); // Debug log
         
         // pagination client-side
         final start = (page - 1) * pageSize;
@@ -197,7 +190,6 @@ class DexscreenerService {
         final tokens = list.map(DexsToken.fromPair).toList();
         allTokens.addAll(tokens);
       } catch (e) {
-        print('Error fetching tokens for $term: $e');
       }
     }
     

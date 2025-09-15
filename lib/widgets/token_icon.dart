@@ -100,7 +100,6 @@ class _TokenIconState extends State<TokenIcon> {
       },
       placeholder: (context, url) => _buildFallbackIcon(theme),
       errorWidget: (context, url, error) {
-        print('Failed to load image ${urls[index]}: $error');
         // Try next URL if available
         if (index + 1 < urls.length) {
           return _buildImageWithFallback(urls, index + 1, theme);

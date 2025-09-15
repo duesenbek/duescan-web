@@ -159,8 +159,6 @@ class Pair extends Equatable {
         txnsSell24h: _parseInt(t24['sells']),
       );
     } catch (e) {
-      print('Error in Pair.fromDex: $e');
-      print('Data: ${j.toString()}');
       rethrow;
     }
   }
