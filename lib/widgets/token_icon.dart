@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import '../services/token_profile_service.dart';
 
 class TokenIcon extends StatefulWidget {
@@ -20,6 +21,11 @@ class TokenIcon extends StatefulWidget {
 
   @override
   State<TokenIcon> createState() => _TokenIconState();
+}
+
+// Helper function to get TrustWallet token logo URL
+String getTokenLogo(String address, {String blockchain = 'solana'}) {
+  return 'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/$blockchain/assets/$address/logo.png';
 }
 
 class _TokenIconState extends State<TokenIcon> {
@@ -89,15 +95,12 @@ class _TokenIconState extends State<TokenIcon> {
 
     // Try multiple image sources in priority order
     final imageSources = <String>[
+      getTokenLogo(widget.tokenAddress), // TrustWallet first
       if (_profileImageUrl != null && _profileImageUrl!.isNotEmpty) _profileImageUrl!,
       if (widget.imageUrl != null && widget.imageUrl!.isNotEmpty) widget.imageUrl!,
     ];
 
-    if (imageSources.isNotEmpty) {
-      return _buildImageWithFallback(imageSources, 0, theme);
-    }
-
-    return _buildFallbackIcon(theme);
+    return _buildImageWithFallback(imageSources, 0, theme);
   }
 
   Widget _buildImageWithFallback(List<String> urls, int index, ThemeData theme) {
@@ -127,29 +130,17 @@ class _TokenIconState extends State<TokenIcon> {
   }
 
   Widget _buildFallbackIcon(ThemeData theme) {
-    final symbol = widget.symbol.toUpperCase();
-    final firstLetter = symbol.isNotEmpty ? symbol[0] : '?';
-    
-    // Generate a color based on the symbol
-    final colorIndex = symbol.hashCode % _fallbackColors.length;
-    final backgroundColor = _fallbackColors[colorIndex.abs()];
-    
     return Container(
       width: widget.size,
       height: widget.size,
       decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerHighest,
         shape: BoxShape.circle,
-        color: backgroundColor,
       ),
-      child: Center(
-        child: Text(
-          firstLetter,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: widget.size * 0.4,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+      child: Icon(
+        IconlyBold.wallet,
+        size: widget.size * 0.5,
+        color: theme.colorScheme.onSurfaceVariant,
       ),
     );
   }
