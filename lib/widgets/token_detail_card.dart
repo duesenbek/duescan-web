@@ -71,7 +71,7 @@ class TokenDetailCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      Formatters.fiat(pair.priceUsd),
+                      Formatters.price(pair.priceUsd),
                       style: theme.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -209,7 +209,7 @@ class TokenDetailCard extends StatelessWidget {
             
             // Price Information
             _buildInfoSection(context, 'Price Details', [
-              _buildInfoRow(context, 'Current Price', Formatters.fiat(pair.priceUsd)),
+              _buildInfoRow(context, 'Current Price', Formatters.price(pair.priceUsd)),
               if (pair.change5m != null)
                 _buildInfoRow(context, '5m Change', '${Formatters.pct(pair.change5m)} (${_getChangeDirection(pair.change5m!)})', 
                   color: _getChangeColor(pair.change5m!)),

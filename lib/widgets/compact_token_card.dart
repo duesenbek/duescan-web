@@ -93,7 +93,7 @@ class CompactTokenCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    Formatters.fiat(pair.priceUsd),
+                    Formatters.price(pair.priceUsd),
                     style: theme.textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),

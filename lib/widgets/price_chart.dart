@@ -242,7 +242,7 @@ class _PriceChartState extends State<PriceChart> {
                 return SideTitleWidget(
                   axisSide: meta.axisSide,
                   child: Text(
-                    Formatters.fiat(value),
+                    Formatters.price(value),
                     style: theme.textTheme.labelSmall?.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,
                     ),
@@ -272,7 +272,7 @@ class _PriceChartState extends State<PriceChart> {
                 if (index >= 0 && index < _chartData.length) {
                   final point = _chartData[index];
                   return LineTooltipItem(
-                    '${Formatters.fiat(point.price)}\n${_formatDateTime(point.timestamp)}',
+                    '${Formatters.price(point.price)}\n${_formatDateTime(point.timestamp)}',
                     TextStyle(
                       color: theme.colorScheme.onInverseSurface,
                       fontWeight: FontWeight.bold,
