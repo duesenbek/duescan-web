@@ -80,18 +80,11 @@ class HomeScreen extends ConsumerWidget {
                         break;
                         
                       case FilterType.new_:
-                        // Sort by creation time (newest first)
-                        filteredTokens.sort((a, b) {
-                          final aCreated = a.pairCreatedAt ?? DateTime.fromMillisecondsSinceEpoch(0);
-                          final bCreated = b.pairCreatedAt ?? DateTime.fromMillisecondsSinceEpoch(0);
-                          return bCreated.compareTo(aCreated);
-                        });
-                        
-                        // Filter by time interval if selected
+                        // Filter by time interval first (show newest tokens)
+                        final now = DateTime.now();
                         if (filters.timeInterval != null) {
-                          final now = DateTime.now();
                           filteredTokens = filteredTokens.where((token) {
-                            if (token.pairCreatedAt == null) return false;
+                            if (token.pairCreatedAt == null) return true; // Include tokens without creation date
                             final diff = now.difference(token.pairCreatedAt!);
                             switch (filters.timeInterval!) {
                               case TimeInterval.min5:
@@ -105,6 +98,13 @@ class HomeScreen extends ConsumerWidget {
                             }
                           }).toList();
                         }
+                        
+                        // Always sort by creation time (newest first)
+                        filteredTokens.sort((a, b) {
+                          final aCreated = a.pairCreatedAt ?? DateTime.fromMillisecondsSinceEpoch(0);
+                          final bCreated = b.pairCreatedAt ?? DateTime.fromMillisecondsSinceEpoch(0);
+                          return bCreated.compareTo(aCreated);
+                        });
                         break;
                         
                       case FilterType.top:

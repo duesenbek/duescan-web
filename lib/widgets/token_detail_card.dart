@@ -147,19 +147,49 @@ class TokenDetailCard extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             
-            // Secondary Metrics Grid
-            GridView.count(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              crossAxisCount: 2,
-              childAspectRatio: 4.5,
-              crossAxisSpacing: 8,
-              mainAxisSpacing: 8,
+            // Secondary Metrics - Same style as primary
+            Row(
               children: [
-                _buildCompactMetricCard('Market Cap', Formatters.fiat(pair.marketCapUsd ?? 0), theme),
-                _buildCompactMetricCard('FDV', Formatters.fiat((pair.marketCapUsd ?? 0) * 1.2), theme),
-                _buildCompactMetricCard('24h Transactions', '${pair.txns24h ?? 0}', theme),
-                _buildCompactMetricCard('Buy/Sell Ratio', '${pair.txnsBuy24h ?? 0}/${pair.txnsSell24h ?? 0}', theme),
+                Expanded(
+                  child: _buildLargeMetricCard(
+                    'Market Cap', 
+                    Formatters.fiat(pair.marketCapUsd ?? 0), 
+                    theme,
+                    icon: Icons.account_balance,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _buildLargeMetricCard(
+                    'FDV', 
+                    Formatters.fiat((pair.marketCapUsd ?? 0) * 1.2), 
+                    theme,
+                    icon: Icons.trending_up,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            
+            Row(
+              children: [
+                Expanded(
+                  child: _buildLargeMetricCard(
+                    '24h Transactions', 
+                    '${pair.txns24h ?? 0}', 
+                    theme,
+                    icon: Icons.swap_horiz,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _buildLargeMetricCard(
+                    'Buy/Sell Ratio', 
+                    '${pair.txnsBuy24h ?? 0}/${pair.txnsSell24h ?? 0}', 
+                    theme,
+                    icon: Icons.balance,
+                  ),
+                ),
               ],
             ),
             

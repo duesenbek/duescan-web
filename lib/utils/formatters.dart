@@ -5,9 +5,10 @@ class Formatters {
 
   static String price(num? v) {
     final n = (v ?? 0).toDouble();
-    if (n >= 1) return n.toStringAsFixed(4);
-    if (n >= 0.01) return n.toStringAsFixed(6);
-    return n.toStringAsExponential(2);
+    if (n >= 1) return '\$${n.toStringAsFixed(4)}';
+    if (n >= 0.001) return '\$${n.toStringAsFixed(6)}';
+    if (n >= 0.000001) return '\$${n.toStringAsFixed(8)}';
+    return '\$${n.toStringAsExponential(2)}';
   }
 
   static String fiat(num? v) {
