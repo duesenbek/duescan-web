@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:auto_animated/auto_animated.dart';
+import '../models/pair.dart';
 import '../providers/trending_filters_provider.dart';
 import '../providers/tokens_provider.dart';
+import '../screens/token_detail_screen.dart';
 import '../widgets/compact_token_card.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/new_filter_bar.dart';
-import 'token_detail_screen.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -306,23 +307,42 @@ class HomeScreen extends ConsumerWidget {
                     );
                   }
 
-                  return ListView.builder(
+                  return LiveList.options(
+                    options: LiveOptions(
+                      delay: Duration(milliseconds: 100),
+                      showItemInterval: Duration(milliseconds: 150),
+                      showItemDuration: Duration(milliseconds: 400),
+                      visibleFraction: 0.025,
+                      reAnimateOnVisibility: false,
+                    ),
                     itemCount: filteredTokens.length,
-                    itemBuilder: (context, index) {
+                    itemBuilder: (context, index, animation) {
                       final pair = filteredTokens[index];
-                      return CompactTokenCard(
-                        pair: pair,
-                        heroTag: 'trending-${pair.pairId}',
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (_) => TokenDetailScreen(
-                                pair: pair,
-                                heroTag: 'trending-${pair.pairId}',
-                              ),
-                            ),
-                          );
-                        },
+                      return FadeTransition(
+                        opacity: Tween<double>(
+                          begin: 0,
+                          end: 1,
+                        ).animate(animation),
+                        child: SlideTransition(
+                          position: Tween<Offset>(
+                            begin: Offset(0, 0.1),
+                            end: Offset.zero,
+                          ).animate(animation),
+                          child: CompactTokenCard(
+                            pair: pair,
+                            heroTag: 'trending-${pair.pairId}',
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (_) => TokenDetailScreen(
+                                    pair: pair,
+                                    heroTag: 'trending-${pair.pairId}',
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
                       );
                     },
                   );
