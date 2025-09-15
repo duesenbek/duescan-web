@@ -47,20 +47,14 @@ class HomeScreen extends ConsumerWidget {
 
                   // Apply new filters
                   final filters = ref.watch(trendingFiltersProvider);
-                  var filteredTokens = tokensState.trending;
-                  
-                  // Apply search filter
-                  if (filters.isSearchActive && filters.searchQuery.isNotEmpty) {
-                    final query = filters.searchQuery.toLowerCase();
-                    filteredTokens = filteredTokens.where((token) {
-                      return token.baseToken.symbol.toLowerCase().contains(query) ||
-                             token.baseToken.name.toLowerCase().contains(query) ||
-                             token.baseAddress.toLowerCase().contains(query);
-                    }).toList();
-                  }
-                  
-                  // Apply filter type logic
-                  if (filters.activeFilter != null && !filters.isSearchActive) {
+                  List<Pair> filteredTokens = List.from(tokensState.trending);
+
+                  // If no filter is active, show trending tokens by default
+                  if (filters.activeFilter == null) {
+                    // Sort by volume for trending (default behavior)
+                    filteredTokens.sort((a, b) => (b.volume24h ?? 0).compareTo(a.volume24h ?? 0));
+                  } else {
+                    // Apply filter type logic
                     switch (filters.activeFilter!) {
                       case FilterType.trending:
                         // Apply trending logic with time interval
