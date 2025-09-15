@@ -42,18 +42,18 @@ class _MainNavigationState extends State<MainNavigation> {
         },
         destinations: [
           NavigationDestination(
-            icon: const Icon(IconlyLight.chart),
-            selectedIcon: const Icon(IconlyBold.chart),
+            icon: const Icon(IconlyLight.discovery),
+            selectedIcon: const Icon(IconlyBold.discovery),
             label: '',
           ),
           NavigationDestination(
-            icon: const Icon(IconlyLight.document),
-            selectedIcon: const Icon(IconlyBold.document),
+            icon: const Icon(IconlyLight.category),
+            selectedIcon: const Icon(IconlyBold.category),
             label: '',
           ),
           NavigationDestination(
-            icon: const Icon(IconlyLight.setting),
-            selectedIcon: const Icon(IconlyBold.setting),
+            icon: const Icon(IconlyLight.profile),
+            selectedIcon: const Icon(IconlyBold.profile),
             label: '',
           ),
         ],

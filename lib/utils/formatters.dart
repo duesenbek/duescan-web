@@ -6,14 +6,28 @@ class Formatters {
   static String price(num? v) {
     final n = (v ?? 0).toDouble();
     if (n == 0) return '\$0.00';
-    if (n >= 1) return '\$${n.toStringAsFixed(4)}';
-    if (n >= 0.01) return '\$${n.toStringAsFixed(4)}';
-    if (n >= 0.001) return '\$${n.toStringAsFixed(5)}';
-    if (n >= 0.0001) return '\$${n.toStringAsFixed(6)}';
-    if (n >= 0.00001) return '\$${n.toStringAsFixed(7)}';
-    if (n >= 0.000001) return '\$${n.toStringAsFixed(8)}';
-    if (n >= 0.0000001) return '\$${n.toStringAsFixed(9)}';
-    return '\$${n.toStringAsExponential(3)}';
+    
+    // For very small numbers, show up to 10 decimal places
+    if (n < 0.000001) {
+      String formatted = n.toStringAsFixed(10);
+      // Remove trailing zeros but keep at least 2 decimal places
+      formatted = formatted.replaceAll(RegExp(r'0+$'), '');
+      if (formatted.endsWith('.')) formatted += '00';
+      if (formatted.split('.')[1].length < 2) formatted += '0';
+      return '\$$formatted';
+    }
+    
+    // For small numbers, show appropriate precision
+    if (n < 0.01) {
+      String formatted = n.toStringAsFixed(8);
+      // Remove trailing zeros but keep significant digits
+      formatted = formatted.replaceAll(RegExp(r'0+$'), '');
+      if (formatted.endsWith('.')) formatted += '00';
+      return '\$$formatted';
+    }
+    
+    // For larger numbers, show 4 decimal places
+    return '\$${n.toStringAsFixed(4)}';
   }
 
   static String fiat(num? v) {
