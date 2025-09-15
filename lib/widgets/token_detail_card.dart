@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:flutter_iconly/flutter_iconly.dart';
 import '../models/pair.dart';
 import '../utils/formatters.dart';
-import 'price_chart.dart';
-import 'token_icon.dart';
+import '../widgets/price_chart.dart';
+import '../widgets/token_icon.dart';
 
 class TokenDetailCard extends StatelessWidget {
   final Pair pair;
@@ -131,7 +131,7 @@ class TokenDetailCard extends StatelessWidget {
                     'Volume 24h', 
                     Formatters.fiat(pair.volume24h ?? 0), 
                     theme,
-                    icon: Icons.bar_chart,
+                    icon: IconlyLight.chart,
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -140,7 +140,7 @@ class TokenDetailCard extends StatelessWidget {
                     'Liquidity', 
                     Formatters.fiat(pair.liquidityUsd ?? 0), 
                     theme,
-                    icon: Icons.water_drop,
+                    icon: IconlyLight.category,
                   ),
                 ),
               ],
@@ -155,7 +155,7 @@ class TokenDetailCard extends StatelessWidget {
                     'Market Cap', 
                     Formatters.fiat(pair.marketCapUsd ?? 0), 
                     theme,
-                    icon: Icons.account_balance,
+                    icon: IconlyLight.wallet,
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -164,7 +164,7 @@ class TokenDetailCard extends StatelessWidget {
                     'FDV', 
                     Formatters.fiat((pair.marketCapUsd ?? 0) * 1.2), 
                     theme,
-                    icon: Icons.trending_up,
+                    icon: IconlyLight.arrowUp,
                   ),
                 ),
               ],
@@ -178,7 +178,7 @@ class TokenDetailCard extends StatelessWidget {
                     '24h Transactions', 
                     '${pair.txns24h ?? 0}', 
                     theme,
-                    icon: Icons.swap_horiz,
+                    icon: IconlyLight.swap,
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -187,7 +187,7 @@ class TokenDetailCard extends StatelessWidget {
                     'Buy/Sell Ratio', 
                     '${pair.txnsBuy24h ?? 0}/${pair.txnsSell24h ?? 0}', 
                     theme,
-                    icon: Icons.balance,
+                    icon: IconlyLight.activity,
                   ),
                 ),
               ],
@@ -240,7 +240,7 @@ class TokenDetailCard extends StatelessWidget {
                 Expanded(
                   child: OutlinedButton.icon(
                     onPressed: () => _copyAddress(context, pair.baseAddress),
-                    icon: const Icon(Icons.copy, size: 18),
+                    icon: const Icon(IconlyLight.document, size: 18),
                     label: const Text('Copy Address'),
                   ),
                 ),
@@ -248,7 +248,7 @@ class TokenDetailCard extends StatelessWidget {
                 Expanded(
                   child: OutlinedButton.icon(
                     onPressed: () => _openDexScreener(pair.baseAddress),
-                    icon: const Icon(Icons.open_in_new, size: 18),
+                    icon: const Icon(IconlyLight.send, size: 18),
                     label: const Text('DexScreener'),
                   ),
                 ),
@@ -467,7 +467,7 @@ class TokenDetailCard extends StatelessWidget {
           ),
           if (copyable)
             Icon(
-              Icons.copy,
+              IconlyLight.document,
               size: 16,
               color: theme.colorScheme.onSurfaceVariant,
             ),
@@ -553,7 +553,7 @@ class TokenDetailCard extends StatelessWidget {
               Expanded(
                 child: ElevatedButton.icon(
                   onPressed: () => _openDexScreener(pair.pairId),
-                  icon: const Icon(Icons.analytics),
+                  icon: const Icon(IconlyLight.chart),
                   label: const Text('DexScreener'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: theme.colorScheme.primary,
@@ -565,7 +565,7 @@ class TokenDetailCard extends StatelessWidget {
               Expanded(
                 child: ElevatedButton.icon(
                   onPressed: () => _openJupiter(pair.baseAddress),
-                  icon: const Icon(Icons.swap_horiz),
+                  icon: const Icon(IconlyLight.swap),
                   label: const Text('Jupiter'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: theme.colorScheme.secondary,
@@ -581,7 +581,7 @@ class TokenDetailCard extends StatelessWidget {
               Expanded(
                 child: OutlinedButton.icon(
                   onPressed: () => _copyToClipboard(context, pair.baseAddress),
-                  icon: const Icon(Icons.copy),
+                  icon: const Icon(IconlyLight.document),
                   label: const Text('Copy Address'),
                 ),
               ),
@@ -589,7 +589,7 @@ class TokenDetailCard extends StatelessWidget {
               Expanded(
                 child: OutlinedButton.icon(
                   onPressed: () => _openBirdEye(pair.baseAddress),
-                  icon: const Icon(Icons.visibility),
+                  icon: const Icon(IconlyLight.show),
                   label: const Text('Birdeye'),
                 ),
               ),

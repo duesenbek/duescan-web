@@ -107,6 +107,21 @@ class TokenProfileService {
     });
   }
 
+  static Future<TokenProfile?> getTokenProfile(String tokenAddress, String chainId) async {
+    return instance.getTokenIcon(tokenAddress, chainId: chainId).then((icon) {
+      if (icon != null) {
+        return TokenProfile(
+          url: '',
+          chainId: chainId,
+          tokenAddress: tokenAddress,
+          icon: icon,
+          links: [],
+        );
+      }
+      return null;
+    });
+  }
+
   Future<String?> getTokenIcon(String tokenAddress, {String chainId = 'solana'}) async {
     final cacheKey = 'icon_${chainId}_$tokenAddress';
     final now = DateTime.now();

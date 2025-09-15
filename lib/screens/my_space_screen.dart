@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 
 import '../widgets/empty_state.dart';
 import '../widgets/compact_token_card.dart';
@@ -34,8 +35,8 @@ class MySpaceScreen extends ConsumerWidget {
               final settings = ref.watch(settingsProvider);
               return Icon(
                 settings.themeMode == ThemeMode.light 
-                    ? Icons.light_mode 
-                    : Icons.dark_mode,
+                    ? IconlyLight.sun 
+                    : IconlyLight.moon,
               );
             },
           ),
@@ -46,7 +47,7 @@ class MySpaceScreen extends ConsumerWidget {
             onPressed: () {
               Navigator.of(context).pushNamed('/settings');
             },
-            icon: const Icon(Icons.settings),
+            icon: const Icon(IconlyLight.setting),
             tooltip: 'Settings',
           ),
         ],
@@ -63,7 +64,7 @@ class MySpaceScreen extends ConsumerWidget {
                 
                 if (favorites.isEmpty) {
                   return const EmptyState(
-                    icon: Icons.favorite_outline,
+                    icon: IconlyLight.heart,
                     title: 'No Favorites Yet',
                     message: 'Add tokens to your favorites by tapping the heart icon on any token card',
                   );
@@ -78,7 +79,7 @@ class MySpaceScreen extends ConsumerWidget {
                     
                     if (favoriteTokens.isEmpty) {
                       return const EmptyState(
-                        icon: Icons.favorite_outline,
+                        icon: IconlyLight.heart,
                         title: 'Favorites Not Found',
                         message: 'Your favorite tokens are not in the current trending list',
                       );
@@ -107,7 +108,7 @@ class MySpaceScreen extends ConsumerWidget {
                   },
                   loading: () => const Center(child: CircularProgressIndicator()),
                   error: (error, stack) => const EmptyState(
-                    icon: Icons.error_outline,
+                    icon: IconlyLight.dangerTriangle,
                     title: 'Error Loading Favorites',
                     message: 'Unable to load your favorite tokens',
                   ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import '../services/token_profile_service.dart';
+import '../models/pair.dart';
 
 class TokenIcon extends StatefulWidget {
   final String? imageUrl;
@@ -46,28 +46,10 @@ class _TokenIconState extends State<TokenIcon> {
       _isLoading = true;
     });
 
-    try {
-      final iconUrl = await TokenProfileService.instance.getTokenIcon(
-        widget.tokenAddress,
-        chainId: widget.chainId,
-      );
-      
-      print('Token icon loaded for ${widget.symbol}: $iconUrl'); // Debug
-      
-      if (mounted && iconUrl != null && iconUrl.isNotEmpty) {
-        setState(() {
-          _profileImageUrl = iconUrl;
-        });
-      }
-    } catch (e) {
-      print('Error loading token icon for ${widget.symbol}: $e'); // Debug
-    } finally {
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-        });
-      }
-    }
+    // For now, just set loading to false since we're using TrustWallet as primary source
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override
@@ -144,19 +126,4 @@ class _TokenIconState extends State<TokenIcon> {
       ),
     );
   }
-
-  static const List<Color> _fallbackColors = [
-    Color(0xFF6366F1), // Indigo
-    Color(0xFF8B5CF6), // Violet
-    Color(0xFFEC4899), // Pink
-    Color(0xFFF59E0B), // Amber
-    Color(0xFF10B981), // Emerald
-    Color(0xFF3B82F6), // Blue
-    Color(0xFFEF4444), // Red
-    Color(0xFF84CC16), // Lime
-    Color(0xFF06B6D4), // Cyan
-    Color(0xFFF97316), // Orange
-    Color(0xFF8B5A2B), // Brown
-    Color(0xFF6B7280), // Gray
-  ];
 }

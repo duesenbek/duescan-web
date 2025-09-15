@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import '../providers/trending_filters_provider.dart';
 
 class NewFilterBar extends ConsumerWidget {
@@ -26,7 +27,7 @@ class NewFilterBar extends ConsumerWidget {
                   _buildFilterButton(
                     context: context,
                     ref: ref,
-                    icon: Icons.trending_up,
+                    icon: IconlyLight.arrowUp,
                     label: 'Trending',
                     filterType: FilterType.trending,
                     isActive: filters.activeFilter == FilterType.trending,
@@ -35,7 +36,7 @@ class NewFilterBar extends ConsumerWidget {
                   _buildFilterButton(
                     context: context,
                     ref: ref,
-                    icon: Icons.new_releases,
+                    icon: IconlyLight.star,
                     label: 'New',
                     filterType: FilterType.new_,
                     isActive: filters.activeFilter == FilterType.new_,
@@ -44,7 +45,7 @@ class NewFilterBar extends ConsumerWidget {
                   _buildFilterButton(
                     context: context,
                     ref: ref,
-                    icon: Icons.bar_chart,
+                    icon: IconlyLight.chart,
                     label: 'Top',
                     filterType: FilterType.top,
                     isActive: filters.activeFilter == FilterType.top,
@@ -53,7 +54,7 @@ class NewFilterBar extends ConsumerWidget {
                   _buildFilterButton(
                     context: context,
                     ref: ref,
-                    icon: Icons.sort,
+                    icon: IconlyLight.swap,
                     label: 'Sort',
                     filterType: FilterType.sort,
                     isActive: filters.activeFilter == FilterType.sort,
@@ -67,7 +68,7 @@ class NewFilterBar extends ConsumerWidget {
             onPressed: () {
               ref.read(trendingFiltersProvider.notifier).toggleSearch();
             },
-            icon: const Icon(Icons.search),
+            icon: const Icon(IconlyLight.search),
             style: IconButton.styleFrom(
               backgroundColor: theme.colorScheme.surfaceVariant,
               foregroundColor: theme.colorScheme.onSurfaceVariant,
@@ -88,7 +89,7 @@ class NewFilterBar extends ConsumerWidget {
               autofocus: true,
               decoration: InputDecoration(
                 hintText: 'Search tokens...',
-                prefixIcon: const Icon(Icons.search),
+                prefixIcon: const Icon(IconlyLight.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -104,7 +105,7 @@ class NewFilterBar extends ConsumerWidget {
             onPressed: () {
               ref.read(trendingFiltersProvider.notifier).toggleSearch();
             },
-            icon: const Icon(Icons.close),
+            icon: const Icon(IconlyLight.closeSquare),
             style: IconButton.styleFrom(
               backgroundColor: theme.colorScheme.surfaceVariant,
               foregroundColor: theme.colorScheme.onSurfaceVariant,
@@ -235,7 +236,7 @@ class NewFilterBar extends ConsumerWidget {
 
     return ListTile(
       title: Text(label),
-      trailing: isSelected ? Icon(Icons.check, color: theme.colorScheme.primary) : null,
+      trailing: isSelected ? Icon(IconlyBold.tickSquare, color: theme.colorScheme.primary) : null,
       tileColor: isSelected ? theme.colorScheme.primaryContainer.withOpacity(0.3) : null,
       onTap: () {
         ref.read(trendingFiltersProvider.notifier).setTimeInterval(interval);
@@ -345,7 +346,7 @@ class NewFilterBar extends ConsumerWidget {
       children: [
         ListTile(
           title: Text(label),
-          trailing: isSelected ? Icon(Icons.check, color: theme.colorScheme.primary) : null,
+          trailing: isSelected ? Icon(IconlyBold.tickSquare, color: theme.colorScheme.primary) : null,
           tileColor: isSelected ? theme.colorScheme.primaryContainer.withOpacity(0.3) : null,
           onTap: () {
             ref.read(trendingFiltersProvider.notifier).setSortOption(option);

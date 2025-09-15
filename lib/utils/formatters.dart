@@ -7,9 +7,12 @@ class Formatters {
     final n = (v ?? 0).toDouble();
     if (n == 0) return '\$0.00';
     if (n >= 1) return '\$${n.toStringAsFixed(4)}';
-    if (n >= 0.001) return '\$${n.toStringAsFixed(6)}';
-    if (n >= 0.000001) return '\$${n.toStringAsFixed(9)}';
-    if (n >= 0.000000001) return '\$${n.toStringAsFixed(12)}';
+    if (n >= 0.01) return '\$${n.toStringAsFixed(4)}';
+    if (n >= 0.001) return '\$${n.toStringAsFixed(5)}';
+    if (n >= 0.0001) return '\$${n.toStringAsFixed(6)}';
+    if (n >= 0.00001) return '\$${n.toStringAsFixed(7)}';
+    if (n >= 0.000001) return '\$${n.toStringAsFixed(8)}';
+    if (n >= 0.0000001) return '\$${n.toStringAsFixed(9)}';
     return '\$${n.toStringAsExponential(3)}';
   }
 

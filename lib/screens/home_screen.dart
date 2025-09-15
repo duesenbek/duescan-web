@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:auto_animated/auto_animated.dart';
-import '../models/pair.dart';
-import '../providers/trending_filters_provider.dart';
-import '../providers/tokens_provider.dart';
-import '../screens/token_detail_screen.dart';
-import '../widgets/compact_token_card.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
+
 import '../widgets/empty_state.dart';
+import '../widgets/compact_token_card.dart';
 import '../widgets/new_filter_bar.dart';
+import '../providers/tokens_provider.dart';
+import '../providers/trending_filters_provider.dart';
+import '../models/pair.dart';
+import 'token_detail_screen.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -39,7 +41,7 @@ class HomeScreen extends ConsumerWidget {
                 data: (tokensState) {
                   if (tokensState.trending.isEmpty) {
                     return const EmptyState(
-                      icon: Icons.trending_up,
+                      icon: IconlyLight.arrowUp,
                       title: 'No trending tokens',
                       message: 'Pull to refresh to load trending tokens',
                     );
@@ -289,7 +291,7 @@ class HomeScreen extends ConsumerWidget {
 
                   if (filteredTokens.isEmpty) {
                     return const EmptyState(
-                      icon: Icons.filter_list_off,
+                      icon: IconlyLight.filter,
                       title: 'No tokens match filters',
                       message: 'Try adjusting your filters or pull to refresh',
                     );
@@ -339,7 +341,7 @@ class HomeScreen extends ConsumerWidget {
                   child: CircularProgressIndicator(),
                 ),
                 error: (error, stack) => const EmptyState(
-                  icon: Icons.error_outline,
+                  icon: IconlyLight.dangerTriangle,
                   title: 'Error Loading Tokens',
                   message: 'Pull to refresh to try again',
                 ),

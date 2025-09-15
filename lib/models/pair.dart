@@ -14,6 +14,7 @@ class Token {
   });
 }
 
+
 class Pair extends Equatable {
   final String chainId;
   final String pairId;
