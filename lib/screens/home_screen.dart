@@ -49,13 +49,8 @@ class HomeScreen extends ConsumerWidget {
                   final filters = ref.watch(trendingFiltersProvider);
                   List<Pair> filteredTokens = List.from(tokensState.trending);
 
-                  // If no filter is active, show trending tokens by default
-                  if (filters.activeFilter == null) {
-                    // Sort by volume for trending (default behavior)
-                    filteredTokens.sort((a, b) => (b.volume24h ?? 0).compareTo(a.volume24h ?? 0));
-                  } else {
-                    // Apply filter type logic
-                    switch (filters.activeFilter!) {
+                  // Apply filter type logic (now always has a default filter)
+                  switch (filters.activeFilter!) {
                       case FilterType.trending:
                         // Apply trending logic with time interval
                         if (filters.timeInterval != null) {
@@ -291,7 +286,6 @@ class HomeScreen extends ConsumerWidget {
                         // Already handled above
                         break;
                     }
-                  }
 
                   if (filteredTokens.isEmpty) {
                     return const EmptyState(

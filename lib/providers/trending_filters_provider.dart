@@ -58,7 +58,10 @@ class TrendingFiltersState {
 class TrendingFiltersNotifier extends Notifier<TrendingFiltersState> {
   @override
   TrendingFiltersState build() {
-    return const TrendingFiltersState();
+    return const TrendingFiltersState(
+      activeFilter: FilterType.trending,
+      timeInterval: TimeInterval.hour24,
+    );
   }
 
   void setActiveFilter(FilterType? filter) {
