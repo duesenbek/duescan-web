@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:iconly/iconly.dart';
 import '../models/pair.dart';
 import '../utils/formatters.dart';
 import '../widgets/price_chart.dart';
@@ -164,7 +164,7 @@ class TokenDetailCard extends StatelessWidget {
                     'FDV', 
                     Formatters.fiat((pair.marketCapUsd ?? 0) * 1.2), 
                     theme,
-                    icon: IconlyLight.arrowUp,
+                    icon: IconlyLight.arrow_up,
                   ),
                 ),
               ],

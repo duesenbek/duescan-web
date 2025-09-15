@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:iconly/iconly.dart';
 import '../models/pair.dart';
 
 class TokenIcon extends StatefulWidget {

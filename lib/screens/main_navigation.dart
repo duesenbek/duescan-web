@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:iconly/iconly.dart';
 import 'trending_screen.dart';
 import '../i18n/strings.dart';
 import 'all_tokens_screen.dart';
