@@ -14,7 +14,6 @@ class MySpaceScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -35,8 +34,8 @@ class MySpaceScreen extends ConsumerWidget {
               final settings = ref.watch(settingsProvider);
               return Icon(
                 settings.themeMode == ThemeMode.light 
-                    ? IconlyLight.sun 
-                    : IconlyLight.moon,
+                    ? Icons.light_mode 
+                    : Icons.dark_mode,
               );
             },
           ),

@@ -70,7 +70,7 @@ class NewFilterBar extends ConsumerWidget {
             },
             icon: const Icon(IconlyLight.search),
             style: IconButton.styleFrom(
-              backgroundColor: theme.colorScheme.surfaceVariant,
+              backgroundColor: theme.colorScheme.surfaceContainerHighest,
               foregroundColor: theme.colorScheme.onSurfaceVariant,
             ),
           ),
@@ -107,7 +107,7 @@ class NewFilterBar extends ConsumerWidget {
             },
             icon: const Icon(IconlyLight.delete),
             style: IconButton.styleFrom(
-              backgroundColor: theme.colorScheme.surfaceVariant,
+              backgroundColor: theme.colorScheme.surfaceContainerHighest,
               foregroundColor: theme.colorScheme.onSurfaceVariant,
             ),
           ),
@@ -237,7 +237,7 @@ class NewFilterBar extends ConsumerWidget {
     return ListTile(
       title: Text(label),
       trailing: isSelected ? Icon(IconlyBold.tick_square, color: theme.colorScheme.primary) : null,
-      tileColor: isSelected ? theme.colorScheme.primaryContainer.withOpacity(0.3) : null,
+      tileColor: isSelected ? theme.colorScheme.primaryContainer.withValues(alpha: 0.3) : null,
       onTap: () {
         ref.read(trendingFiltersProvider.notifier).setTimeInterval(interval);
         Navigator.pop(context);
@@ -347,7 +347,7 @@ class NewFilterBar extends ConsumerWidget {
         ListTile(
           title: Text(label),
           trailing: isSelected ? Icon(IconlyBold.tick_square, color: theme.colorScheme.primary) : null,
-          tileColor: isSelected ? theme.colorScheme.primaryContainer.withOpacity(0.3) : null,
+          tileColor: isSelected ? theme.colorScheme.primaryContainer.withValues(alpha: 0.3) : null,
           onTap: () {
             ref.read(trendingFiltersProvider.notifier).setSortOption(option);
             if (!hasTimeOptions) {

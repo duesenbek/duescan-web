@@ -17,7 +17,6 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final trendingAsync = ref.watch(trendingTokensProvider);
-    final theme = Theme.of(context);
 
     return Scaffold(
       appBar: AppBar(

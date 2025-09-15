@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'trending_screen.dart';
-import '../i18n/strings.dart';
 import 'all_tokens_screen.dart';
 import 'settings_screen.dart';
 
