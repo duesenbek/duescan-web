@@ -1,4 +1,4 @@
-# DueScan
+<img width="413" height="422" alt="image" src="https://github.com/user-attachments/assets/facf7751-2af4-443c-b87d-a792a6f7abb1" /># **DueScan**
 
 A Flutter app for tracking trending Solana tokens with real-time data from DexScreener API.
 
@@ -14,6 +14,8 @@ A Flutter app for tracking trending Solana tokens with real-time data from DexSc
 ## Live Demo
 
 🌐 **Web App**: [https://duesenbek.github.io/duescan-web/](https://duesenbek.github.io/duescan-web/)
+🌐 **Telegram Mini-App**:[https://t.me/DueScanBot]
+)
 
 ## Quick Start
 
@@ -27,17 +29,22 @@ flutter pub get
 
 # Run the app
 flutter run -d chrome  # For web
-flutter run             # For mobile
+
 ```
 
 ## Tech Stack
 
 - **Flutter 3.22+** with Dart 3.3+
-- **Riverpod** for state management
 - **Material 3** design system
 - **DexScreener API** for token data
+- **Trust Wallet assets** for token icons
+- **Sf-Pro,Inter** fonts
+  ## other dependencies
+- **flutter_riverpod: ^2.5.1** for state management
+- **dio: ^5.5.0+1** for working with http 
+- **Iconly: ^1.0.1** for system icons
 - **Cached Network Image** for token icons
-
+- 
 ## Architecture
 
 ```
