@@ -1,7 +1,7 @@
  **DueScan**
-<img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/73003742-1362-432e-a7b9-4fe2a2c42e15"/>
-<img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/3b12662e-5c38-43ce-9469-668b2c25b9ea"/>
-<img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/9c6dc7b7-57d7-4e5a-872d-36f54503a964"/>
+<img width="250" height="550" alt="image" src="https://github.com/user-attachments/assets/73003742-1362-432e-a7b9-4fe2a2c42e15"/>
+<img width="250" height="550" alt="image" src="https://github.com/user-attachments/assets/3b12662e-5c38-43ce-9469-668b2c25b9ea"/>
+<img width="250" height="550" alt="image" src="https://github.com/user-attachments/assets/9c6dc7b7-57d7-4e5a-872d-36f54503a964"/>
 
 A Flutter app for tracking trending Solana tokens with real-time data from DexScreener API.
 
